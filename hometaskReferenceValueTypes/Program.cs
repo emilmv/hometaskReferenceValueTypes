@@ -30,16 +30,37 @@ internal class Program
 
         #endregion
 
-        #region Task4
+        #region Task4fix
 
 
-        string word = "sskkllmm";
+        //string word = "safgweafasdwqasfwafs";
 
-        removeRepeatingLetters(word);
+        //Console.WriteLine(removeRepeatingLetters(word));
 
         #endregion
 
+        #region Task5
 
+
+        //string word = "Salam";
+
+        //Console.WriteLine(reverseWord(word));
+
+
+        #endregion
+
+        #region Task6yaz
+
+
+
+
+        #endregion
+
+        #region Task7
+
+
+
+        #endregion
 
     }
 
@@ -113,29 +134,37 @@ internal class Program
 
     }
 
-    static void removeRepeatingLetters(string word)
+    static StringBuilder removeRepeatingLetters(string word)
     {
-        string newWord = string.Empty;
+        StringBuilder newWord = new StringBuilder();
 
         for (int i = 0; i < word.Length; i++)
         {
-           for (int j = 0; j < word.Length; j++)
+          for (int j = i+1; j < word.Length; j++)
             {
-                if (word[i]!= word[j])
+                if (word[i] == word[j])
                 {
-                    newWord += word[i];
+                    newWord.Append(word[i]);
                     break;
                 }
             }
-
         }
-        Console.WriteLine(newWord);
+        return newWord;
 
 
 
     }
  
+    static StringBuilder reverseWord(string word)
+    {
+        StringBuilder newWord = new StringBuilder();
 
+        for (int i = word.Length - 1; i >= 0; i--)
+        {
+            newWord.Append(word[i]);
+        }
+        return newWord;
+    }
 
 
 
