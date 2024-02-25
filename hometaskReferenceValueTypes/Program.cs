@@ -152,7 +152,7 @@ internal class Program
     static void removeRepeatingChars(string word)
     {
         string newWord = "";
-        bool exists = true;
+        bool exists;
         foreach (char c in word)
         {
             exists = false;
