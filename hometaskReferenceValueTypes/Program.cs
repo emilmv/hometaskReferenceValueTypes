@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System.Buffers;
+using System.ComponentModel.Design;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -12,7 +13,7 @@ internal class Program
     {
         #region Task1
 
-        //int[] array = { 1,-2, -3, 4, -5 };
+        //int[] array = { 1, -2, -3, 4, -5 };
 
         //convertNegatives(ref array);
 
@@ -26,16 +27,15 @@ internal class Program
 
         #region Task3
 
-        //Console.WriteLine(isPalendrome("kukukuk"));
+        //Console.WriteLine(isPalendrome("fafafafaf"));
 
         #endregion
 
-        #region Task4fix
+        #region Task4
+        
+        //string word = "ggff32553fefagas";
 
-
-        //string word = "safgweafasdwqasfwafs";
-
-        //Console.WriteLine(removeRepeatingLetters(word));
+        //removeRepeatingChars(word);
 
         #endregion
 
@@ -49,8 +49,11 @@ internal class Program
 
         #endregion
 
-        #region Task6yaz
+        #region Task6
 
+
+        //string word = "salam necesen salam necesen";
+        //changeString(word);
 
 
 
@@ -58,7 +61,21 @@ internal class Program
 
         #region Task7
 
+        //int[] arr = { 1, 2, 4, 5, 6, 7, 88, 5, 43, 32, 6 };
 
+        //bubbleSort(arr);
+        //foreach (int i in arr)
+        //{
+        //    Console.WriteLine(i);
+        //}
+
+        #endregion
+
+        #region Task8
+
+        //string word = "salam necesen?";
+
+        //Console.WriteLine(firstFourLetters(word));
 
         #endregion
 
@@ -68,29 +85,27 @@ internal class Program
 
     static void convertNegatives(ref int[] array)
     {
-        int[] arr2 = new int[array.Length];
-
         int temp = 0;
 
         for (int i = 0; i < array.Length; i++)
         {
             if (array[i] >= 0)
             {
-                arr2[temp] = array[i];
+                array[temp] = array[i];
                 temp++;
             }
             else if (array[i] < 0)
             {
-                arr2[temp] = array[i] + (array[i] * -2);
+                array[temp] = array[i] + (array[i] * -2);
                 temp++;
             }
         }
-        for (int i = 0; i < arr2.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            Console.WriteLine(arr2[i]);
+            Console.WriteLine(array[i]);
         }
-        
-        
+
+
     }
 
     static void Repeat(string word, int count)
@@ -109,9 +124,9 @@ internal class Program
         Console.WriteLine(newWord);
     }
 
-    static bool isPalendrome(string word)
+    static string isPalendrome(string word)
     {
-        
+
         int count = 0;
         StringBuilder newWord = new StringBuilder();
         for (int i = word.Length - 1; i >= 0; i--)
@@ -125,36 +140,42 @@ internal class Program
                 count++;
                 if (count == newWord.Length)
                 {
-                    return true;
+                    return word+" sozu - Palendromdur";
                 }
             }
 
         }
-        return false;
+        return word+" sozu - Palendrom deyil";
 
     }
 
-    static StringBuilder removeRepeatingLetters(string word)
+    static void removeRepeatingChars(string word)
     {
-        StringBuilder newWord = new StringBuilder();
-
-        for (int i = 0; i < word.Length; i++)
+        string newWord = "";
+        bool exists = true;
+        foreach (char c in word)
         {
-          for (int j = i+1; j < word.Length; j++)
+            exists = false;
+            foreach (char d in newWord)
             {
-                if (word[i] == word[j])
+                if (d == c)
                 {
-                    newWord.Append(word[i]);
+                    exists = true;
                     break;
                 }
             }
+            if (!exists)
+            {
+                newWord += c;
+            }
+
         }
-        return newWord;
+        Console.WriteLine(newWord);
 
 
 
     }
- 
+
     static StringBuilder reverseWord(string word)
     {
         StringBuilder newWord = new StringBuilder();
@@ -166,16 +187,59 @@ internal class Program
         return newWord;
     }
 
+    static void changeString(string word)
+    {
+        string newWord = string.Empty;
+
+        for (int i = 0; i < word.Length; i++)
+        {
+            if (word[i]!=' ') 
+            {
+                newWord += word[i];
+            }
+            if (i == word.Length - 1 || word[i + 1] == ' ')
+            { 
+                Console.WriteLine(newWord);
+                newWord = string.Empty;
+            }
+        }
+    }
+
+    static void bubbleSort(int[] arr)
+    {
+        int temp = 0;
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            for (int j = 0; j < arr.Length - 1; j++)
+            {
+                if (arr[j] > arr[j + 1])
+                {
+                    temp = arr[j + 1];
+                    arr[j + 1] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    }
+
+    static StringBuilder firstFourLetters(string word)
+    {
+        StringBuilder newWord = new StringBuilder();
+
+        for (int i = 0; i < 4; i++)
+        {
+            newWord.Append(word[i]);
+        }
+
+
+        return newWord;
+    }
+
+
 
 
 }
-
-
-
-
-
-
-
 
 
 
